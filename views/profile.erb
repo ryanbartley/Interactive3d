@@ -1,0 +1,30 @@
+<div class="container" >
+
+    <div class="row clearfix" >
+        <legend>
+            <%= @page_heading %> 
+        </legend>
+
+        <div class="well">
+            <div class="row">
+                    <div class="span6">
+                        <p><strong><%= @p.firstname.capitalize %> <%= @p.lastname.capitalize %></strong></p>
+                        <p><%= @p.email %></p>
+                        <br>
+                        <legend>EDIT PAGES</legend>
+                        <% @p.pages.each do |page| %>
+                            <a href="/pages/<%= page.slug %>"><%= page.title %></a>
+                        <% end %>
+                        <div class="control-group" style="margin-top: 10px;">
+                            <label class="control-label" ></label>
+                            <div class="controls">
+                                <a class="btn btn-primary" href="/changeprofile">Change Profile</a>
+                                <a class="btn" href="/pages">Check Out Pages</a>
+                            </div>
+                        </div>
+                        
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -3,12 +3,15 @@ source 'https://rubygems.org'
 gem 'sinatra'
 gem 'dm-core'
 gem 'dm-migrations'
-gem 'dm-postgres-adapter'
+gem 'dm-types'
+
+gem 'bcrypt-ruby'
 
 group :development do
+	gem 'dm-sqlite-adapter'
 	gem 'shotgun'
 end
 
 group :production do
-	gem 'thin'
+	gem 'dm-postgres-adapter'
 end
