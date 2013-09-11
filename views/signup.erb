@@ -1,45 +1,30 @@
-<div id="container" style="height: 300">
-    <legend> 
-        <%= @page_heading %> 
-    </legend>
-    <br>
-    <div>
-        <form class="form-horizontal" id="signup" action="/signedup" method="POST" style="overflow-y:auto;">
-            <div class="control-group">
-                <label class="control-label" for="firstname" style="width:100px;">First Name</label>
-                <div class="controls" style="margin-left:120px;">
-                    <input class="input-large" type="text" name="firstname" id="firstname" onblur="javascript:checkFirstName(this)" />
-                </div>
-            </div>
-  
-            <div class="control-group">
-                <label class="control-label" for="lastname" style="width:100px;">Last Name</label>
-                <div class="controls" style="margin-left:120px;">
-                    <input class="input-large" type="text" id="lastname" name="lastname" />
-                </div>
-            </div>
-  
-            <div class="control-group">
-                <label class="control-label" for="email" style="width:100px;">Email</label>
-                <div class="controls" style="margin-left:120px;">
-                    <input class="input-large" id="email" type="text" name="email" /> 
-                </div>
-            </div>
-  
-            <div class="control-group">
-                <label class="control-label" for="password" style="width:100px;">Password</label>
-                <div class="controls" style="margin-left:120px;">
-                    <input class="input-large" id="password" type="password" name="password" />
-                </div>
-            </div>
-  
-            <div class="control-group">
-                <label class="control-label" for="checkpassword" style="width:100px;">Reenter Password</label>
-                <div class="controls" style="margin-left:120px;">
-                    <input class="input-large" type="password" id="checkpassword" name="checkpassword" />
-                </div>
-            </div>
-            <button type="submit" id="fake" class="btn btn-primary">Save changes</button>   
-        </form>
-    </div>
-</div>
+<h1><%= @page_heading %></h1>
+
+<form id="signup" action="/signedup" method="POST">
+	<ul>
+		<li>
+			<label for="firstname">First Name</label>
+			<input type="text" name="firstname" id="firstname" onblur="javascript:checkFirstName(this)" />
+		</li>
+		<li>
+			<label for="lastname">Last Name</label>
+			<input type="text" id="lastname" name="lastname" />
+		</li>
+		<li>
+			<label for="email">Email</label>
+			<input id="email" type="text" name="email" /> 
+		</li>
+		<li>
+			<label for="password">Password</label>
+			<input id="password" type="password" name="password" />
+		</li>
+		<li>
+			<label for="checkpassword">Reenter Password</label>
+			<input type="password" id="checkpassword" name="checkpassword" />
+		</li>
+		<li>
+			<button type="submit" id="fake">Save changes</button>
+		</li>
+	</ul>
+</form>
+

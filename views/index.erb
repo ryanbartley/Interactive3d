@@ -6,6 +6,8 @@
 
 
 		<script>
+			var $siteHolder = $('#site_holder');
+			var siteHolderWidth = $siteHolder.width();
 
 			var container, stats;
 
@@ -19,7 +21,7 @@
 			var mouseX = 0;
 			var mouseXOnMouseDown = 0;
 
-			var windowHalfX = window.innerWidth / 2;
+			var windowHalfX = siteHolderWidth / 2;
 			var windowHalfY = window.innerHeight / 2;
 
 			init();
@@ -28,7 +30,7 @@
 			function init() {
 
 				container = document.createElement( 'div' );
-				document.body.appendChild( container );
+				$siteHolder.append( container );
 
 				// var info = document.createElement( 'div' );
 				// info.style.position = 'absolute';
@@ -38,7 +40,7 @@
 				// info.innerHTML = 'Simple Dynamic 3D Text Example by <a href="http://www.lab4games.net/zz85/blog">zz85</a><br>Drag to spin the text';
 				// container.appendChild( info );
 
-				camera = new THREE.PerspectiveCamera( 50, window.innerWidth / window.innerHeight, 1, 1000 );
+				camera = new THREE.PerspectiveCamera( 50, siteHolderWidth / window.innerHeight, 1, 1000 );
 				camera.position.set( 0, 150, 500 );
 
 				scene = new THREE.Scene();
@@ -87,7 +89,7 @@
 				
 				renderer = new THREE.CanvasRenderer();
 				var height = $(window).height();
-				var width = $(window).width();
+				var width = siteHolderWidth;
 				renderer.setSize( width, height );
 
 				container.appendChild( renderer.domElement );
@@ -104,13 +106,13 @@
 
 			function onWindowResize() {
 
-				windowHalfX = window.innerWidth / 2;
+				windowHalfX = siteHolderWidth / 2;
 				windowHalfY = window.innerHeight / 2;
 
-				camera.aspect = window.innerWidth / window.innerHeight;
+				camera.aspect = siteHolderWidth / window.innerHeight;
 				camera.updateProjectionMatrix();
 
-				renderer.setSize( window.innerWidth, window.innerHeight );
+				renderer.setSize( siteHolderWidth, window.innerHeight );
 
 			}
 

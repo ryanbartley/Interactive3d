@@ -1,6 +1,11 @@
+<ul>
 <% @people.each do |person| %>
-	<legend><%= person.name %></legend>
+	<li>
+		<h2><%= person.name %></h2>
+		
 		<% person.pages.each do |page| %>
 			<a href="/pages/<%= page.slug %>"><%= page.title %></a>
 		<% end %>
+	</li>
 <% end %>
+</ul>
