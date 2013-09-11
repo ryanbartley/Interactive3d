@@ -9,19 +9,19 @@
 	<link rel="stylesheet" href="/css/reset.css" />
 	<link rel="stylesheet" href="/css/application.css" />
 	<body>
-		<div class="container">
-			<div class="navbar navbar-fixed-top">
+		<div>
+			<div>
 
 			<!-- This is to decide whether the person is logged in or not -->
 
 			<% if login? %> 
 
-				<div class="navbar-inner">
-					<div class="nav-collapse">
-							<ul class="nav">
+				<div>
+					<div>
+							<ul>
 								<li>
 									<a href="/">
-										<span class="siteTitle">Interactive 3D Programming</span>
+										<span>Interactive 3D Programming</span>
 									</a>
 								</li>
 								<li>
@@ -31,13 +31,13 @@
 									<a href="/pages">PAGES</a>
 								</li>
 							</ul>
-						<div class="pull-right">
-                			<ul class="nav pull-right">
-                			    <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Welcome, <%= firstname %> <%= lastname %> <b class="caret"></b></a>
-                			        <ul class="dropdown-menu">
-                			            <li><a href="/profile"><i class="icon-cog"></i> Profile</a></li>
-                			            <li class="divider"></li>
-                			            <li><a href="/logout"><i class="icon-off"></i> Logout</a></li>
+						<div>
+                			<ul>
+                			    <li><a href="#" data-toggle="dropdown">Welcome, <%= firstname %> <%= lastname %> <b></b></a>
+                			        <ul>
+                			            <li><a href="/profile"><i></i> Profile</a></li>
+                			            <li></li>
+                			            <li><a href="/logout"><i></i> Logout</a></li>
                 			        </ul>
                 			    </li>
                 			</ul>
@@ -47,14 +47,14 @@
 
 			<% else %>
 
-				<div class="navbar-inner">
+				<div>
 
-					<div class="nav-collapse">
+					<div>
 
-						<ul class="nav">
+						<ul>
 								<li>
 									<a href="/">
-										<span class="siteTitle">Interactive 3D Programming</span>
+										<span>Interactive 3D Programming</span>
 									</a>
 								</li>
 								<li>
@@ -64,23 +64,23 @@
 									<a href="/pages">PAGES</a>
 								</li>
 						</ul>
-						<ul class="nav pull-right">
+						<ul>
 							<li>
 								<a href="/signup">SIGNUP</a>
 							</li>
-							<li class="dropdown">
-								<a href="#" class="dropdown-toggle" data-toggle="dropdown">Login
-									<b class="caret"></b>
+							<li>
+								<a href="#" data-toggle="dropdown">Login
+									<b></b>
 								</a>
-								<ul class="dropdown-menu">
+								<ul>
 									<li>
-										<form class="loginForm" action="/login" method="POST">
+										<form action="/login" method="POST">
 											<input type="text" name="email" placeholder="email" />
 											<input type="password" name="password" placeholder="password" />
-											<label class="checkbox">
+											<label>
     											<input type="checkbox" name="remember"> Remember me
   											</label>
-											<button type="submit"  class="btn">Sign in</button>
+											<button type="submit" >Sign in</button>
 										</form>
 									</li>
 								</ul>
@@ -93,7 +93,7 @@
 
 		</div>
 
-		<div class="undernavbar">
+		<div>
 
 			<%= yield %>
 
