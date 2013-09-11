@@ -8,95 +8,47 @@
 	<link rel="stylesheet" href="/css/reset.css" />
 	<link rel="stylesheet" href="/css/application.css" />
 	<body>
-		<div>
-			<div>
+		<header>
 
-			<!-- This is to decide whether the person is logged in or not -->
+		<!-- This is to decide whether the person is logged in or not -->
 
-			<% if login? %> 
+		<% if login? %> 
+			<ul>
+				<li><a href="/">Home</a></li>
+				<li><a href="/about">About</a></li>
+				<li><a href="/pages">Pages</a></li>
+			</ul>
+			<section>
+				<a href="#">Welcome, <%= firstname %> <%= lastname %></a>
+				<ul>
+					<li><a href="/profile"><i></i> Profile</a></li>
+					<li></li>
+					<li><a href="/logout"><i></i> Logout</a></li>
+				</ul>
+			</section>
 
-				<div>
-					<div>
-							<ul>
-								<li>
-									<a href="/">
-										<span>Interactive 3D Programming</span>
-									</a>
-								</li>
-								<li>
-									<a href="/about">ABOUT</a>
-								</li>
-								<li>
-									<a href="/pages">PAGES</a>
-								</li>
-							</ul>
-						<div>
-                			<ul>
-                			    <li><a href="#" data-toggle="dropdown">Welcome, <%= firstname %> <%= lastname %> <b></b></a>
-                			        <ul>
-                			            <li><a href="/profile"><i></i> Profile</a></li>
-                			            <li></li>
-                			            <li><a href="/logout"><i></i> Logout</a></li>
-                			        </ul>
-                			    </li>
-                			</ul>
-              			</div>
-					</div>
-				</div>
+		<% else %>
 
-			<% else %>
+			<ul>
+				<li><a href="/">Home</a></li>
+				<li><a href="/about">About</a></li>
+				<li><a href="/pages">Pages</a></li>
+			</ul>
+			<section>
+				<a href="/signup">Sign Up</a>
+				<a href="#">Login</a>
 
-				<div>
+				<form action="/login" method="POST">
+					<input type="text" name="email" placeholder="email" />
+					<input type="password" name="password" placeholder="password" />
+					<button type="submit" >Sign in</button>
+				</form>
+			</section>
+		<% end %>
+	</header>
 
-					<div>
-
-						<ul>
-								<li>
-									<a href="/">
-										<span>Interactive 3D Programming</span>
-									</a>
-								</li>
-								<li>
-									<a href="/about">ABOUT</a>
-								</li>
-								<li>
-									<a href="/pages">PAGES</a>
-								</li>
-						</ul>
-						<ul>
-							<li>
-								<a href="/signup">SIGNUP</a>
-							</li>
-							<li>
-								<a href="#" data-toggle="dropdown">Login
-									<b></b>
-								</a>
-								<ul>
-									<li>
-										<form action="/login" method="POST">
-											<input type="text" name="email" placeholder="email" />
-											<input type="password" name="password" placeholder="password" />
-											<label>
-    											<input type="checkbox" name="remember"> Remember me
-  											</label>
-											<button type="submit" >Sign in</button>
-										</form>
-									</li>
-								</ul>
-							</li>
-						</ul>
-					</div>
-				</div>
-
-			<% end %>
-
-		</div>
-
-		<div>
-
-			<%= yield %>
-
-		</div>
+	<div>
+		<%= yield %>
 	</div>
 </body>
 </html>

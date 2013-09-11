@@ -1,45 +1,30 @@
-<div id="container">
-    <legend> 
-        <%= @page_heading %> 
-    </legend>
-    <br>
-    <div>
-        <form id="signup" action="/signedup" method="POST">
-            <div>
-                <label for="firstname">First Name</label>
-                <div>
-                    <input type="text" name="firstname" id="firstname" onblur="javascript:checkFirstName(this)" />
-                </div>
-            </div>
-  
-            <div>
-                <label for="lastname">Last Name</label>
-                <div>
-                    <input type="text" id="lastname" name="lastname" />
-                </div>
-            </div>
-  
-            <div>
-                <label for="email">Email</label>
-                <div>
-                    <input id="email" type="text" name="email" /> 
-                </div>
-            </div>
-  
-            <div>
-                <label for="password">Password</label>
-                <div>
-                    <input id="password" type="password" name="password" />
-                </div>
-            </div>
-  
-            <div>
-                <label for="checkpassword">Reenter Password</label>
-                <div>
-                    <input type="password" id="checkpassword" name="checkpassword" />
-                </div>
-            </div>
-            <button type="submit" id="fake">Save changes</button>   
-        </form>
-    </div>
-</div>
+<h1><%= @page_heading %></h1>
+
+<form id="signup" action="/signedup" method="POST">
+	<ul>
+		<li>
+			<label for="firstname">First Name</label>
+			<input type="text" name="firstname" id="firstname" onblur="javascript:checkFirstName(this)" />
+		</li>
+		<li>
+			<label for="lastname">Last Name</label>
+			<input type="text" id="lastname" name="lastname" />
+		</li>
+		<li>
+			<label for="email">Email</label>
+			<input id="email" type="text" name="email" /> 
+		</li>
+		<li>
+			<label for="password">Password</label>
+			<input id="password" type="password" name="password" />
+		</li>
+		<li>
+			<label for="checkpassword">Reenter Password</label>
+			<input type="password" id="checkpassword" name="checkpassword" />
+		</li>
+		<li>
+			<button type="submit" id="fake">Save changes</button>
+		</li>
+	</ul>
+</form>
+
