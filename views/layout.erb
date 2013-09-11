@@ -8,7 +8,7 @@
 	<script type="text/javascript" src="/js/bootstrap.min.js"></script>
 	<link rel="stylesheet" href="/css/reset.css" />
 	<link rel="stylesheet" href="/css/application.css" />
-	<body style="padding: 0px">
+	<body>
 		<div class="container">
 			<div class="navbar navbar-fixed-top">
 
@@ -16,11 +16,11 @@
 
 			<% if login? %> 
 
-				<div class="navbar-inner" style="width: 100%; margin-left: auto; margin-right: auto">
-					<div class="nav-collapse" style="">
+				<div class="navbar-inner">
+					<div class="nav-collapse">
 							<ul class="nav">
 								<li>
-									<a style="padding: 0px; margin-right=20px" href="/">
+									<a href="/">
 										<span class="siteTitle">Interactive 3D Programming</span>
 									</a>
 								</li>
@@ -47,13 +47,13 @@
 
 			<% else %>
 
-				<div class="navbar-inner" style="width: 100%; margin-left: auto; margin-right: auto">
+				<div class="navbar-inner">
 
 					<div class="nav-collapse">
 
-						<ul class="nav" style="margin-top: 5px;">
+						<ul class="nav">
 								<li>
-									<a style="padding: 0px; margin-right=20px" href="/">
+									<a href="/">
 										<span class="siteTitle">Interactive 3D Programming</span>
 									</a>
 								</li>
@@ -75,8 +75,8 @@
 								<ul class="dropdown-menu">
 									<li>
 										<form class="loginForm" action="/login" method="POST">
-											<input style="input-medium" type="text" name="email" placeholder="email" />
-											<input style="input-medium" type="password" name="password" placeholder="password" />
+											<input type="text" name="email" placeholder="email" />
+											<input type="password" name="password" placeholder="password" />
 											<label class="checkbox">
     											<input type="checkbox" name="remember"> Remember me
   											</label>

@@ -1,41 +1,41 @@
-<div id="container" style="height: 300">
+<div id="container">
     <legend> 
         <%= @page_heading %> 
     </legend>
     <br>
     <div>
-        <form class="form-horizontal" id="signup" action="/signedup" method="POST" style="overflow-y:auto;">
+        <form class="form-horizontal" id="signup" action="/signedup" method="POST">
             <div class="control-group">
-                <label class="control-label" for="firstname" style="width:100px;">First Name</label>
-                <div class="controls" style="margin-left:120px;">
+                <label class="control-label" for="firstname">First Name</label>
+                <div class="controls">
                     <input class="input-large" type="text" name="firstname" id="firstname" onblur="javascript:checkFirstName(this)" />
                 </div>
             </div>
   
             <div class="control-group">
-                <label class="control-label" for="lastname" style="width:100px;">Last Name</label>
-                <div class="controls" style="margin-left:120px;">
+                <label class="control-label" for="lastname">Last Name</label>
+                <div class="controls">
                     <input class="input-large" type="text" id="lastname" name="lastname" />
                 </div>
             </div>
   
             <div class="control-group">
-                <label class="control-label" for="email" style="width:100px;">Email</label>
-                <div class="controls" style="margin-left:120px;">
+                <label class="control-label" for="email">Email</label>
+                <div class="controls">
                     <input class="input-large" id="email" type="text" name="email" /> 
                 </div>
             </div>
   
             <div class="control-group">
-                <label class="control-label" for="password" style="width:100px;">Password</label>
-                <div class="controls" style="margin-left:120px;">
+                <label class="control-label" for="password">Password</label>
+                <div class="controls">
                     <input class="input-large" id="password" type="password" name="password" />
                 </div>
             </div>
   
             <div class="control-group">
-                <label class="control-label" for="checkpassword" style="width:100px;">Reenter Password</label>
-                <div class="controls" style="margin-left:120px;">
+                <label class="control-label" for="checkpassword">Reenter Password</label>
+                <div class="controls">
                     <input class="input-large" type="password" id="checkpassword" name="checkpassword" />
                 </div>
             </div>
