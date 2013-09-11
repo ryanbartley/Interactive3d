@@ -117,11 +117,11 @@ get '/pages/:page' do
 end
 
 post '/newpage' do
-    p = Person.first(:email => session[:email])
-    if p
+    @p = Person.first(:email => session[:email])
+    if @p
         @this_page = Page.new
         @pages = Page.all
-        @this_page.createPage(params[:title], params[:description], p)
+        @this_page.createPage(params[:title], params[:description], @p)
 
         erb :single_page
     else
