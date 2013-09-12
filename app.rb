@@ -79,7 +79,7 @@ post '/login' do
 			@page_title = "Profile"
 			session[:email] = @p.email
 			session[:firstname] = @p.firstname.capitalize
-			session[:lastname] = @p.firstname.capitalize
+			session[:lastname] = @p.lastname.capitalize
 			redirect '/profile'
 		else
 			@page_title = "Please Check Password"
@@ -113,17 +113,43 @@ get '/pages' do
 end
 
 get '/pages/:page' do
-	
+	@p = Person.first(:email => session[:email])
+	@this_page = Page.first(:slug => params[:page])
+	if @p 
+		@page_title = "Edit Page"
+		@page_heading = "You can edit, add or delete code and submit when finished!"
+		erb :singlepage
+	else
+		resetSession
+		@page_title = "Please Login"
+		@page_heading = "Please Login"
+		erb :login
+	end
+end
+
+get '/addpage' do
+	@p = Person.first(:email => session[:email])
+	if @p 
+		@page_title = "Add Page"
+		@page_heading = "Add your new page!"
+		erb :addpage
+	else
+		resetSession
+		@page_title = "Please Login"
+		@page_heading = "Please Login"
+		erb :login
+	end
 end
 
 post '/newpage' do
-    p = Person.first(:email => session[:email])
-    if p
+    @p = Person.first(:email => session[:email])
+    if @p
         @this_page = Page.new
         @pages = Page.all
-        @this_page.createPage(params[:title], params[:description], p)
-
-        erb :single_page
+        @this_page.createPage(params[:title], params[:code], @p)
+        @page_title = "Edit Page"
+		@page_heading = "You can edit, add or delete code and submit when finished!"
+        erb :singlepage
     else
         "You're not logged in GO FUCK YOURSELF!!!!!!!!!!!!!!!!!!!"
     end     
@@ -134,8 +160,9 @@ get '/logout' do
     redirect "/"
 end
 
-
-
+get '/about' do
+	erb :about
+end
 
 
 
