@@ -1,11 +1,14 @@
-<ul>
+<h1>Student Pages</h1>
+
+<ul id="pages_list">
 <% @people.each do |person| %>
 	<li>
 		<h2><%= person.name %></h2>
-		
+		<ul>
 		<% person.pages.each do |page| %>
-			<a href="/pages/<%= page.slug %>"><%= page.title %></a>
+			<li><a href="/pages/<%= page.slug %>"><%= page.title %></a></li>
 		<% end %>
+		</ul>
 	</li>
 <% end %>
 </ul>
