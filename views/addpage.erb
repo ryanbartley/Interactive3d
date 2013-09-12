@@ -1,0 +1,18 @@
+<h1><%= @page_heading %></h1>
+
+<form id="addproject" action="/newpage" method="post">
+	<ul>
+		<li>
+			<label for="title">Title</label>
+			<input id="title" type="text" name="title" value="" />
+		</li>
+		<li>
+			<label for="code">Code</label>
+			<textarea rows="6" cols="80" id="code" name="code"></textarea>
+		</li>
+		<li>
+			<button type="submit">Save changes</button>
+			<a class="button" href="/profile">Cancel</a>
+		</li>
+	</ul>
+</form>

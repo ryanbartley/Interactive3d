@@ -39,7 +39,7 @@ end
 class Page
 	include DataMapper::Resource
 	property :id, 			Serial
-	property :title, 		String
+	property :title, 		String 
 	property :code, 		Text
 	property :created_at, 	DateTime
 	property :slug, 		String, :default => lambda { | resource, prop| resource.title.downcase.gsub " ", "" }
@@ -50,8 +50,10 @@ class Page
 		self.title = title
 		self.code = code
 		self.created_at = DateTime.now
-		person.pages << self
+		self.person_id = person.id
 		self.save
+		person.pages << self
+		person.save
 	end
 end
 

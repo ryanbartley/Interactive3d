@@ -1,28 +1,27 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
 	<title>
 		<%= @page_title %>
 	</title>
-	<script type="text/javascript" src="/js/application.js"></script>
 	<script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
+	<script type="text/javascript" src="/js/application.js"></script>
 	<link rel="stylesheet" href="/css/reset.css" />
 	<link rel="stylesheet" href="/css/application.css" />
 	<body>
 		<div id="site_holder">
 			<header>
-
-			<!-- This is to decide whether the person is logged in or not -->
-
 			<% if login? %> 
 				<ul>
-					<li><a href="/">Home</a></li>
-					<li><a href="/about">About</a></li>
+					<li><h2>Interactive 3D Programming</h2></li>
+					<li><a href="/">Home</a>/</li>
+					<li><a href="/about">About</a>/</li>
 					<li><a href="/pages">Pages</a></li>
 				</ul>
-				<section>
-					<a href="#">Welcome, <%= firstname %> <%= lastname %></a>
+				<section id="welcome">
+					<h2>Welcome, <%= firstname %> <%= lastname %>!</h2>
 					<ul>
-						<li><a href="/profile"><i></i> Profile</a></li>
+						<li><a href="/profile"><i></i> Profile</a>/</li>
 						<li></li>
 						<li><a href="/logout"><i></i> Logout</a></li>
 					</ul>
@@ -31,26 +30,49 @@
 			<% else %>
 
 				<ul>
-					<li><a href="/">Home</a></li>
-					<li><a href="/about">About</a></li>
+					<li><h2>Interactive 3D Programming</h2></li>
+					<li><a href="/">Home</a>/</li>
+					<li><a href="/about">About</a>/</li>
 					<li><a href="/pages">Pages</a></li>
 				</ul>
-				<section>
-					<a href="/signup">Sign Up</a>
-					<a href="#">Login</a>
-
-					<form action="/login" method="POST">
-						<input type="text" name="email" placeholder="email" />
-						<input type="password" name="password" placeholder="password" />
-						<button type="submit" >Sign in</button>
-					</form>
+				<section id="user_control">
+					<ul>
+						<li id="login"><a href="#" >Log In</a>/
+							<div id="login_panel" class="hidden">
+								<form action="/login" method="POST">
+									<input type="text" name="email" placeholder="email" />
+									<input type="password" name="password" placeholder="password" />
+									<button type="submit" >Sign in</button>
+								</form>
+							</div>
+						</li>
+						<li><a href="/signup">Sign Up</a></li>
+					</ul>
+					
 				</section>
 			<% end %>
-		</header>
+			</header>
 
-		<div>
-			<%= yield %>
+		<div id="main_content">
+		<%= yield %>
 		</div>
 	</div>
 </body>
 </html>
+
+<!--
+              .__....._             _.....__,
+                 .": o :':         ;': o :".
+                 `. `-' .'.       .'. `-' .'   
+                   `---'             `---'  
+
+         _...----...      ...   ...      ...----..._
+      .-'__..-""'----    `.  `"`  .'    ----'""-..__`-.
+     '.-'   _.--"""'       `-._.-'       '"""--._   `-.`
+     '  .-"'                  :                  `"-.  `
+       '   `.              _.'"'._              .'   `
+             `.       ,.-'"       "'-.,       .'
+               `.                           .'
+                 `-._                   _.-'
+                     `"'--...___...--'"`
+-->
