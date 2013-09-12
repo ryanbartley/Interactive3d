@@ -1,13 +1,14 @@
-body { background-image: url('/img/bg.jpg'); color: #444; font-family: Helvetica, Arial, sans-serif; padding: 30px 0; }
+html,body { width: 100%; }
+body { color: #444; font-family: Helvetica, Arial, sans-serif; }
 a { color: #9a63c9; text-decoration: none; }
 a:hover { background-color: #444; color: #FFF; }
 form input { border: none; background-color: rgba(255,255,255,0.8); color: #444; font-family: Helvetica, Arial, sans-serif; padding: 4px; }
 form input:focus { -webkit-box-shadow: inset 0px 0px 2px 0px rgba(0, 0, 0, .4); box-shadow: inset 0px 0px 2px 0px rgba(0, 0, 0, .4); outline: none; }
 form button { background-color: #444; border: none; color: #fff; font-family: Helvetica; font-weight: bold; padding: 4px; text-align: center; }
 
-#site_holder { background-color: rgba(255,255,255,0.8); margin: 0 auto; padding: 10px; width: 960px; }
+#site_holder { background-color: rgba(255,255,255,0.8); margin: 0 auto; width: 100%; }
 
-header { font-weight: bold; height: 40px; margin-bottom: 12px; }
+header { background-color: #CCC; font-weight: bold; height: 18px; margin-bottom: 12px; padding: 6px; }
 header h2 { display: inline; }
 header ul { float: left; }
 header ul li { display: inline; }
@@ -19,9 +20,10 @@ header section { float: right; position: relative; }
 #login_panel.hidden { display: none; }
 #login_panel form button { float: right; }
 
+#main_content { padding: 0 6px; }
 #main_content h1 { font-size: 140%; font-weight: bold; margin-bottom: 12px; }
 
-#signup ul li input { width: 30%; }
+#signup ul li input { background-color: #CCC; width: 30%; }
 #signup ul li label { display: inline-block; width: 15%; }
 
 #welcome ul { display: inline; float: none; }

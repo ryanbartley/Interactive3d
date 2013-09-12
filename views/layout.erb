@@ -11,9 +11,6 @@
 	<body>
 		<div id="site_holder">
 			<header>
-
-			<!-- This is to decide whether the person is logged in or not -->
-
 			<% if login? %> 
 				<ul>
 					<li><h2>Interactive 3D Programming</h2></li>
@@ -50,15 +47,32 @@
 							</div>
 						</li>
 						<li><a href="/signup">Sign Up</a></li>
-
+					</ul>
 					
 				</section>
 			<% end %>
-		</header>
+			</header>
 
 		<div id="main_content">
-			<%= yield %>
+		<%= yield %>
 		</div>
 	</div>
 </body>
 </html>
+
+<!--
+              .__....._             _.....__,
+                 .": o :':         ;': o :".
+                 `. `-' .'.       .'. `-' .'   
+                   `---'             `---'  
+
+         _...----...      ...   ...      ...----..._
+      .-'__..-""'----    `.  `"`  .'    ----'""-..__`-.
+     '.-'   _.--"""'       `-._.-'       '"""--._   `-.`
+     '  .-"'                  :                  `"-.  `
+       '   `.              _.'"'._              .'   `
+             `.       ,.-'"       "'-.,       .'
+               `.                           .'
+                 `-._                   _.-'
+                     `"'--...___...--'"`
+-->
