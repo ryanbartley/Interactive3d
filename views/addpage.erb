@@ -1,0 +1,25 @@
+<div>
+  <legend><%= @page_heading %></legend>
+  <form class="form-horizontal" id="addproject" action="/newpage" method="post">
+      <div class="control-group">
+          <label class="control-label" for="title" style="width:100px;">Title</label>
+          <div class="controls" style="margin-left:120px;">
+              <input class="input-large" id="title" type="text" name="title" value="" />
+          </div>
+      </div>
+     
+      <div class="control-group">
+          <label class="control-label" for="date" style="width:100px;">Code</label>
+          <div class="controls" style="margin-left:120px;">
+              <textarea style="width: 210px" rows="6" cols="80" id="description" name="code"></textarea>
+          </div>
+      </div>
+
+                    
+                    <button type="submit" class="btn btn-primary">Save changes</button>
+                    <a type="button" class="btn" href="/profile">Cancel</a>
+                </div> 
+            </div>
+    </div>
+  </form>
+</div>
