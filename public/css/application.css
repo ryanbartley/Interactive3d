@@ -24,3 +24,4 @@ header section { float: right; position: relative; }
 #signup ul li input { width: 30%; }
 #signup ul li label { display: inline-block; width: 15%; }
 
+#welcome ul { display: inline; float: none; }
