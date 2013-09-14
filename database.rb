@@ -55,6 +55,12 @@ class Page
 		person.pages << self
 		person.save
 	end
+
+	def updatePage(title, code)
+		self.title = title
+		self.code = code
+		self.save
+	end
 end
 
 DataMapper.finalize

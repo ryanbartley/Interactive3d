@@ -1,0 +1,40 @@
+<h1><%= @page_heading %></h1>
+
+<form id="addproject" action="/newpage" method="post">
+	<ul>
+		<li>
+			<label for="title">Title</label>
+			<input id="title" type="text" name="title" value="<%= @this_page.title %>" />
+		</li>
+		<li>
+			<label for="code">Code</label>
+			<textarea rows="6" cols="80" id="code" name="code"><%= @this_page.code %></textarea>
+		</li>
+		<li>
+			<button type="submit">Save changes</button>
+			<a class="button" id="update" href="#">Update Page</a>
+			<a class="button" href="/edit/<%= @this_page.slug %>">Reset Page</button>
+			<a class="button" href="/profile">Cancel</a>
+		</li>
+	</ul>
+</form>
+
+<div id="code">
+	<%= @this_page.code %>
+</div>
+
+<script type="text/javascript">
+	var code;
+	var button;
+	var textarea;
+	$(document).ready(function(){
+		code = $('div #code');
+		textarea = $('textarea');
+		$('#update').click(function(){
+			code.html(' ');
+			textarea.text(textarea.text());
+			code.html(textarea.text());
+		});
+	});
+
+</script>

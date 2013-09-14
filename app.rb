@@ -115,15 +115,25 @@ end
 get '/pages/:page' do
 	@p = Person.first(:email => session[:email])
 	@this_page = Page.first(:slug => params[:page])
-	if @p 
-		@page_title = "Edit Page"
-		@page_heading = "You can edit, add or delete code and submit when finished!"
-		erb :singlepage
+	if session[:email] && session[:firstname] && session[:lastname]
+		if @p && @p.id == @this_page.person.id 
+			@owner = true
+			@page_title = "Edit Page"
+			@page_heading = "You can edit, add or delete code and submit when finished!"
+			erb :singlepage
+		else
+		
+			@owner = false
+			@page_title = @this_page.title
+			@page_heading = @this_page.title
+			erb :singlepage
+		end
 	else
-		resetSession
-		@page_title = "Please Login"
-		@page_heading = "Please Login"
-		erb :login
+		resetSession 
+		@owner = false
+		@page_title = @this_page.title
+		@page_heading = @this_page.title
+		erb :singlepage
 	end
 end
 
@@ -147,6 +157,7 @@ post '/newpage' do
         @this_page = Page.new
         @pages = Page.all
         @this_page.createPage(params[:title], params[:code], @p)
+        @owner = true
         @page_title = "Edit Page"
 		@page_heading = "You can edit, add or delete code and submit when finished!"
         erb :singlepage
@@ -155,6 +166,23 @@ post '/newpage' do
         @page_heading = "You're not logged in GO FUCK YOURSELF!!!!!!!!!!!!!!!!!!!"
         erb :login
     end     
+end
+
+get '/edit/:page' do
+	@p = Person.first(:email => session[:email])
+	@this_page = Page.first(:slug => params[:page])
+	if @p && @p.id == @this_page.person.id 
+		@owner = true
+		@page_title = "Edit Page"
+		@page_heading = "You can edit, add or delete code and submit when finished!"
+		erb :editpage
+	else
+		@owner = false
+		resetSession
+		@page_title = "Please Login"
+		@page_heading = "Please Login"
+		erb :login
+	end
 end
 
 get '/logout' do

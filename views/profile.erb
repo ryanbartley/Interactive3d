@@ -9,7 +9,7 @@
 	<h2>Edit Pages</h2>
 	<ul>
 		<% @p.pages.each do |page| %>
-			<li><a href="/pages/<%= page.slug %>"><%= page.title %></a></li>
+			<li><a href="/pages/<%= page.slug %>"><%= page.title %></a> <a href="/edit/<%= page.slug %>">Edit</a></li>
 		<% end %>
 	</ul>
 
