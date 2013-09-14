@@ -13,6 +13,8 @@ class Person
  	property :password,		BCryptHash
 	
  	has n, :pages, :through => Resource
+ 	has n, :topics, :through => Resource
+ 	has n, :posts, :through => Resource
 	
  	def createPerson(firstname, lastname, email, password)
  		self.firstname = firstname.downcase
@@ -60,6 +62,51 @@ class Page
 		self.title = title
 		self.code = code
 		self.save
+	end
+end
+
+class Topic
+	include DataMapper::Resource
+	property :id,	Serial	
+	property :title, 		String
+	property :text, 		Text
+	property :created_at, 	DateTime
+
+	belongs_to :person
+	has n, :posts, :through => Resource
+
+	def createTopic(title, text, p)
+		self.title = title
+		self.text = text
+		self.created_at = DateTime.now
+		self.person_id = p.id 
+		p.topics << self
+		p.save 
+		self.save
+	end
+
+end
+
+class Post
+	include DataMapper::Resource
+	property :id, 			Serial
+	property :title, 		String
+	property :text, 		Text
+	property :created_at, 	DateTime
+
+	belongs_to :topic
+	belongs_to :person
+
+	def createPost(title, text, topic, p)
+		self.title = title
+		self.text = text
+		self.topic_id = topic.id
+		self.person_id = p.id
+		topic.posts << self
+		p.posts << self
+		topic.save
+		p.save
+		self.save 
 	end
 end
 

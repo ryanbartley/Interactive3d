@@ -185,6 +185,39 @@ get '/edit/:page' do
 	end
 end
 
+get '/forum' do
+	@p = Person.first(:email => session[:email])
+	@topics = Topic.all(:order => [ :created_at.desc ])
+	if @p 
+		@edit = true
+		@page_title = "Question Forum"
+		@page_heading = "Post your Questions or Answers!"
+		erb :forum
+	else
+		@edit = false
+		resetSession
+		@page_title = "Question Forum"
+		@page_heading = "Check out questions and answers!"
+		erb :forum
+	end
+end
+
+get '/addtopic' do
+
+end
+
+post '/topic' do
+
+end
+
+get '/post' do
+
+end
+
+post '/post' do
+
+end
+
 get '/logout' do
     resetSession
     redirect "/"

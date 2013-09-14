@@ -29,11 +29,12 @@
 	var textarea;
 	$(document).ready(function(){
 		code = $('div #code');
-		textarea = $('textarea');
 		$('#update').click(function(){
+			textarea = $('textarea');
+			var input = textarea.val();
 			code.html(' ');
-			textarea.text(textarea.text());
-			code.html(textarea.text());
+			textarea.text(input);
+			code.html(input);
 		});
 	});
 
