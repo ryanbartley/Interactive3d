@@ -40,8 +40,8 @@ header section { float: right; position: relative; }
 
 #profile ul { margin-bottom: 12px; }
 
-#forum_topics li { background-color: #DFDFDF; }
-#forum_topics .replies { margin-left: 12px; }
+#forum_topics li { background-color: #DFDFDF; border-left: 4px solid #444; padding: 10px; }
 #forum_topics .replies li { background-color: #CDCDCD; }
+#forum_topics .replies li p { margin-bottom: 0; }
 
 #add_topic { display: inline-block; font-size: 120%; margin-bottom: 14px; }

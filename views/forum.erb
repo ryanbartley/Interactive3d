@@ -15,7 +15,8 @@
 					<% posts = topic.posts.all(:order => [ :created_at.desc ]) %>
 					<% posts.each do |post| %>
 						<li>
-							<h2><%= post.text %> - <%= post.person.name %>, <%= post.created_at.strftime("%m/%d/%Y at %I:%M%p") %></h2>
+							<h2><%= post.person.name %>, <%= post.created_at.strftime("%m/%d/%Y at %I:%M%p") %></h2>
+							<p><%= post.text %></p>
 						</li>
 					<% end %>
 				</ul>
