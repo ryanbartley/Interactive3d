@@ -44,12 +44,14 @@ class Page
 	property :title, 		String 
 	property :code, 		Text
 	property :created_at, 	DateTime
-	property :slug, 		String, :default => lambda { | resource, prop| resource.title.downcase.gsub " ", "" }
+	property :slug, 		String #, :default => lambda { | resource, prop| resource.title.downcase.gsub " ", "" }
 
 	belongs_to :person
 
 	def createPage(title, code, person)
 		self.title = title
+		self.slug = title.to_slug.word_chars.to_s 
+		self.slug = self.slug.downcase.gsub " ", ""
 		self.code = code
 		self.created_at = DateTime.now
 		self.person_id = person.id
@@ -71,6 +73,7 @@ class Topic
 	property :title, 		String
 	property :text, 		Text
 	property :created_at, 	DateTime
+	property :slug,			String #, :default => lambda { | resource, prop| resource.title.downcase.gsub " ", "" }
 
 	belongs_to :person
 	has n, :posts, :through => Resource
@@ -78,6 +81,8 @@ class Topic
 	def createTopic(title, text, p)
 		self.title = title
 		self.text = text
+		self.slug = title.to_slug.word_chars.to_s 
+		self.slug = self.slug.downcase.gsub " ", ""
 		self.created_at = DateTime.now
 		self.person_id = p.id 
 		p.topics << self
@@ -90,18 +95,17 @@ end
 class Post
 	include DataMapper::Resource
 	property :id, 			Serial
-	property :title, 		String
 	property :text, 		Text
 	property :created_at, 	DateTime
 
 	belongs_to :topic
 	belongs_to :person
 
-	def createPost(title, text, topic, p)
-		self.title = title
+	def createPost(text, topic, p)
 		self.text = text
-		self.topic_id = topic.id
+		self.created_at = DateTime.now
 		self.person_id = p.id
+		self.topic_id = topic.id
 		topic.posts << self
 		p.posts << self
 		topic.save

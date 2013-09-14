@@ -1,0 +1,18 @@
+<h1><%= @page_heading %></h1>
+
+<form id="addproject" action="/topic" method="post">
+	<ul>
+		<li>
+			<label for="title">Topic</label>
+			<input id="title" type="text" name="title" value="" />
+		</li>
+		<li>
+			<label for="text">Remark</label>
+			<textarea rows="6" cols="80" id="text" name="text"></textarea>
+		</li>
+		<li>
+			<button type="submit">Save topic</button>
+			<a class="button" href="/forum">Cancel</a>
+		</li>
+	</ul>
+</form>

@@ -1,3 +1,5 @@
+<h1><%= @page_heading %></h1>
+
 <% if @edit %>
 	<a href="/addtopic">Add Topic</a>
 <% end %>
@@ -7,15 +9,14 @@
 			<h2><%= topic.title %> - <%= topic.person.name %>, <%= topic.created_at.strftime("%m/%d/%Y at %I:%M%p") %></h2> 
 			<%= topic.text %>
 			<% if @edit %>
-				<a href="/addpost">Reply To Topic</a>
+				<a href="/topic/<%= topic.slug %>">Reply To Topic</a>
 			<% end %>
 			<br>
 				<ul>
 					<% posts = topic.posts.all(:order => [ :created_at.desc ]) %>
 					<% posts.each do |post| %>
 						<li>
-							<h2><%= post.title %> - <%= post.person.name %>, <%= post.created_at %></h2>
-							<%= post.text %>
+							<h2><%= post.text %> - <%= post.person.name %>, <%= post.created_at.strftime("%m/%d/%Y at %I:%M%p") %></h2>
 						</li>
 						<br>
 					<% end %>

@@ -2,6 +2,7 @@ require 'rubygems'
 require 'bundler'
 Bundler.require
 require 'bcrypt'
+require 'babosa'
 require 'date'
 require './database.rb'
 
@@ -27,10 +28,10 @@ helpers do
         session[:email]
     end
     def firstname
-        session[:firstname] 
+        session[:firstname].capitalize
     end
     def lastname
-        session[:lastname]
+        session[:lastname].capitalize
     end
 end
 
@@ -203,19 +204,71 @@ get '/forum' do
 end
 
 get '/addtopic' do
-
+	@p = Person.first(:email => session[:email])
+	if @p 
+		@page_title = "Add Topic"
+		@page_heading = "Add a topic!"
+		erb :addtopic
+	else
+		resetSession
+		@page_title = "Please Login"
+		@page_heading = "Please Login"
+		erb :login
+	end
 end
 
 post '/topic' do
-
+	@p = Person.first(:email => session[:email])
+    if @p
+    	@this_topic = Topic.new
+        @topics = Topic.all
+        @this_topic.createTopic(params[:title], params[:text], @p)
+        @edit = true
+        @page_title = "Question Forum"
+		@page_heading = "Thanks for Posting!!!"
+        erb :forum
+    else
+    	@edit = false
+        @page_title = "You're not logged in GO FUCK YOURSELF!!!!!!!!!!!!!!!!!!!"
+        @page_heading = "You're not logged in GO FUCK YOURSELF!!!!!!!!!!!!!!!!!!!"
+        erb :login
+    end     
 end
 
-get '/post' do
-
+get '/topic/:slug' do
+	@p = Person.first(:email => session[:email])
+	@this_topic = Topic.first(:slug => params[:slug])
+	if @p
+		@edit = true
+		@page_title = "Question Forum"
+		@page_heading = "Reply to this topic!"
+		erb :addpost
+	else
+		@edit = false
+		resetSession
+		@page_title = "Please Login"
+		@page_heading = "Please Login"
+		erb :login
+	end
 end
 
 post '/post' do
-
+	@p = Person.first(:email => session[:email])
+	@this_topic = Topic.first(:id => params[:id])
+    if @p
+    	@this_post = Post.new
+        @topics = Topic.all
+        @this_post.createPost(params[:text], @this_topic, @p)
+        @edit = true
+        @page_title = "Question Forum"
+		@page_heading = "Thanks for Posting!!!"
+        erb :forum
+    else
+    	@edit = false
+        @page_title = "You're not logged in GO FUCK YOURSELF!!!!!!!!!!!!!!!!!!!"
+        @page_heading = "You're not logged in GO FUCK YOURSELF!!!!!!!!!!!!!!!!!!!"
+        erb :login
+    end  
 end
 
 get '/logout' do

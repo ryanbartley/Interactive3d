@@ -4,6 +4,7 @@ gem 'sinatra'
 gem 'dm-core'
 gem 'dm-migrations'
 gem 'dm-types'
+gem 'babosa'
 
 gem 'bcrypt-ruby'
 
