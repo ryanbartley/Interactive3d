@@ -1,27 +1,24 @@
 <h1><%= @page_heading %></h1>
 
-<li>
-	<h2><%= @this_topic.title %> - <%= @this_topic.person.name %>, <%= @this_topic.created_at.strftime("%m/%d/%Y at %I:%M%p") %></h2> 
-	<%= @this_topic.text %>
-	<% if @edit %>
-		<a href="/topic/<%= @this_topic.slug %>">Reply To Topic</a>
-	<% end %>
-	<br>
-	<ul>
-		<% posts = @this_topic.posts.all(:order => [ :created_at.desc ]) %>
-		<% posts.each do |post| %>
-			<li>
-				<h2><%= post.text %> - <%= post.person.name %>, <%= post.created_at.strftime("%m/%d/%Y at %I:%M%p") %></h2>
-			</li>
-			<br>
-		<% end %>
-	</ul>
-</li>
+<ul id="forum_topics">
+	<li>
+		<h2><%= @this_topic.title %> - <%= @this_topic.person.name %>, <%= @this_topic.created_at.strftime("%m/%d/%Y at %I:%M%p") %></h2> 
+		<%= @this_topic.text %>
+		<ul class="replies">
+			<% posts = @this_topic.posts.all(:order => [ :created_at.desc ]) %>
+			<% posts.each do |post| %>
+				<li>
+					<h2><%= post.text %> - <%= post.person.name %>, <%= post.created_at.strftime("%m/%d/%Y at %I:%M%p") %></h2>
+				</li>
+			<% end %>
+		</ul>
+	</li>
+</ul>
 
 <form id="addproject" action="/post" method="post">
 	<ul>
 		<li>
-			<label for="text">Remark</label>
+			<label for="text">Your Reply</label>
 			<textarea rows="6" cols="80" id="text" name="text"></textarea>
 			<input type="hidden" name="id" value="<%= @this_topic.id %>" id="id" />
 		</li>
