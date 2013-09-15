@@ -257,8 +257,8 @@ post '/post' do
 	@this_topic = Topic.first(:id => params[:id])
     if @p
     	@this_post = Post.new
-        @topics = Topic.all
         @this_post.createPost(params[:text], @this_topic, @p)
+        @topics = Topic.all
         @edit = true
         @page_title = "Question Forum"
 		@page_heading = "Thanks for Posting!!!"

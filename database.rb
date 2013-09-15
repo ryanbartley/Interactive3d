@@ -2,18 +2,48 @@ DataMapper::setup(:default, ENV['DATABASE_URL'] || "sqlite://#{Dir.pwd}/developm
 
 DataMapper::Model.raise_on_save_failure = true
 
+class PersonTopic
+    include DataMapper::Resource
+
+    property :topic_id,  	Integer, :key => true
+    property :person_id,  	Integer, :key => true
+
+    belongs_to :person, :child_key => [:person_id]
+    belongs_to :topic, :child_key => [:topic_id]
+end
+
+class PersonPost
+    include DataMapper::Resource
+
+    property :post_id,  	Integer, :key => true
+    property :person_id,  	Integer, :key => true
+
+    belongs_to :person, :child_key => [:person_id]
+    belongs_to :post, :child_key => [:post_id]
+end
+
+class PostTopic
+    include DataMapper::Resource
+
+    property :topic_id,  	Integer, :key => true
+    property :post_id,  	Integer, :key => true
+
+    belongs_to :post, :child_key => [:post_id]
+    belongs_to :topic, :child_key => [:topic_id]
+end
+
 class Person
  	include DataMapper::Resource
  	include BCrypt
 	
- 	property :id, Serial
+ 	property :id, 			Serial
  	property :firstname, 	String
  	property :lastname, 	String
  	property :email, 		String
  	property :password,		BCryptHash
 	
  	has n, :pages, :through => Resource
- 	has n, :topics, :through => Resource
+ 	has n, :topics, :through => :person_topic
  	has n, :posts, :through => Resource
 	
  	def createPerson(firstname, lastname, email, password)
@@ -21,6 +51,13 @@ class Person
  		self.lastname = lastname.downcase
  		self.email = email.downcase
  		self.password = password
+ 		self.save
+ 	end
+
+ 	def addTopic(topic)
+ 		pt = PersonTopic.new
+ 		pt.topic = topic
+ 		self.topics << topic
  		self.save
  	end
 
@@ -55,6 +92,7 @@ class Page
 		self.code = code
 		self.created_at = DateTime.now
 		self.person_id = person.id
+		self.person = person
 		self.save
 		person.pages << self
 		person.save
@@ -69,13 +107,13 @@ end
 
 class Topic
 	include DataMapper::Resource
-	property :id,	Serial	
+	property :id,			Serial	
 	property :title, 		String
 	property :text, 		Text
 	property :created_at, 	DateTime
 	property :slug,			String #, :default => lambda { | resource, prop| resource.title.downcase.gsub " ", "" }
 
-	belongs_to :person
+	has 1, :person, :through => :person_topic
 	has n, :posts, :through => Resource
 
 	def createTopic(title, text, p)
@@ -84,8 +122,7 @@ class Topic
 		self.slug = title.to_slug.word_chars.to_s 
 		self.slug = self.slug.downcase.gsub " ", ""
 		self.created_at = DateTime.now
-		self.person_id = p.id 
-		p.topics << self
+		p.addTopic(self)
 		p.save 
 		self.save
 	end
