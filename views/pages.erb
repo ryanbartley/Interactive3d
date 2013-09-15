@@ -1,5 +1,7 @@
 <h1>Student Pages</h1>
 
+<% if login? %><a class="big button" href="/addpage">Add Page</a><% end %>
+
 <ul id="pages_list">
 <% @people.each do |person| %>
 	<li>

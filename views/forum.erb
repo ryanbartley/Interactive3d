@@ -1,24 +1,23 @@
 <h1><%= @page_heading %></h1>
 
 <% if @edit %>
-	<a href="/addtopic">Add Topic</a>
+	<a id="add_topic" class="big button" href="/addtopic">Add Topic</a>
 <% end %>
-<ul>
+<ul id="forum_topics">
 	<% @topics.each do |topic| %>
 		<li>
 			<h2><%= topic.title %> - <%= topic.person.name %>, <%= topic.created_at.strftime("%m/%d/%Y at %I:%M%p") %></h2> 
-			<%= topic.text %>
+			<p><%= topic.text %></p>
 			<% if @edit %>
-				<a href="/topic/<%= topic.slug %>">Reply To Topic</a>
+				<a class="button" href="/topic/<%= topic.slug %>">Reply To Topic</a>
 			<% end %>
-			<br>
-				<ul>
+				<ul class="replies">
 					<% posts = topic.posts.all(:order => [ :created_at.desc ]) %>
 					<% posts.each do |post| %>
 						<li>
-							<h2><%= post.text %> - <%= post.person.name %>, <%= post.created_at.strftime("%m/%d/%Y at %I:%M%p") %></h2>
+							<h2><%= post.person.name %>, <%= post.created_at.strftime("%m/%d/%Y at %I:%M%p") %></h2>
+							<p><%= post.text %></p>
 						</li>
-						<br>
 					<% end %>
 				</ul>
 		</li>

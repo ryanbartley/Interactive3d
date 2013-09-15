@@ -6,18 +6,15 @@
 		<p><%= @p.email %></p>
 	<div>
 
-	<h2>Edit Pages</h2>
+	<% if @p.pages.count > 0 %><h2>Your Pages</h2><% end %>
 	<ul>
 		<% @p.pages.each do |page| %>
-			<li><a href="/pages/<%= page.slug %>"><%= page.title %></a> <a href="/edit/<%= page.slug %>">Edit</a></li>
+			<li><a href="/pages/<%= page.slug %>"><%= page.title %></a> <a class="button" href="/edit/<%= page.slug %>">Edit</a></li>
 		<% end %>
 	</ul>
 
-	<ul>
-		<li><a href="/addpage">Add Page</a></li>
-	</ul>
-
-	<ul>
-		<li><a href="/addtopic">Add Topic</a></li>
+	<ul id="profile_controls">
+		<li><a class="button" href="/addpage">Add Page</a></li>
+		<li><a class="button" href="/addtopic">Add Topic</a></li>
 	</ul>
 </div>
