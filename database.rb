@@ -87,8 +87,7 @@ class Page
 
 	def createPage(title, code, person)
 		self.title = title
-		self.slug = title.to_slug.word_chars.to_s 
-		self.slug = self.slug.downcase.gsub " ", ""
+		self.slug = title.to_slug.word_chars.to_s.downcase.gsub " ", ""
 		self.code = code
 		self.created_at = DateTime.now
 		self.person_id = person.id
@@ -119,8 +118,7 @@ class Topic
 	def createTopic(title, text, p)
 		self.title = title
 		self.text = text
-		self.slug = title.to_slug.word_chars.to_s 
-		self.slug = self.slug.downcase.gsub " ", ""
+		self.slug = title.to_slug.word_chars.to_s.downcase.gsub " ", ""
 		self.created_at = DateTime.now
 		p.addTopic(self)
 		p.save 
