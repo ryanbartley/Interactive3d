@@ -5,6 +5,7 @@ gem 'dm-core'
 gem 'dm-migrations'
 gem 'dm-types'
 gem 'babosa'
+gem 'thin'
 
 gem 'bcrypt-ruby'
 
