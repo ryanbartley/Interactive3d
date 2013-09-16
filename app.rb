@@ -161,7 +161,7 @@ post '/newpage' do
         @owner = true
         @page_title = "Edit Page"
 		@page_heading = "You can edit, add or delete code and submit when finished!"
-        erb :singlepage
+        erb :editpage
     else
         @page_title = "You're not logged in GO FUCK YOURSELF!!!!!!!!!!!!!!!!!!!"
         @page_heading = "You're not logged in GO FUCK YOURSELF!!!!!!!!!!!!!!!!!!!"
