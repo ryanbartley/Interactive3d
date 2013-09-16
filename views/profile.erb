@@ -9,7 +9,7 @@
 	<% if @p.pages.count > 0 %><h2>Your Pages</h2><% end %>
 	<ul>
 		<% @p.pages.each do |page| %>
-			<li><a href="/pages/<%= page.slug %>"><%= page.title %></a> <a class="button" href="/edit/<%= page.slug %>">Edit</a></li>
+			<li><a href="/pages/<%= page.slug %>"><%= page.title %></a> <a class="button" href="/edit/<%= page.slug %>">Edit</a><a class="button" href="/delete/<%= page.slug %>">Delete</a></li>
 		<% end %>
 	</ul>
 

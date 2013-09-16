@@ -13,7 +13,7 @@
 		<li>
 			<button type="submit">Save changes</button>
 			<a class="button" id="update" href="#">Update Page</a>
-			<a class="button" href="/edit/<%= @this_page.slug %>">Reset Page</button>
+			<a class="button" href="/edit/<%= @this_page.slug %>">Reset Page</a>
 			<a class="button" href="/profile">Cancel</a>
 		</li>
 	</ul>
@@ -27,7 +27,7 @@
 	var code;
 	var button;
 	var textarea;
-	$(document).ready(function(){
+	$(window).ready(function(){
 		code = $('div #code');
 		$('#update').click(function(){
 			textarea = $('textarea');

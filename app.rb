@@ -109,7 +109,7 @@ get '/profile' do
 end
 
 get '/pages' do
-	@people = Person.all
+	@people = Person.all(:order => :lastname.asc)
 	erb :pages
 end
 
@@ -269,6 +269,24 @@ post '/post' do
         @page_heading = "You're not logged in GO FUCK YOURSELF!!!!!!!!!!!!!!!!!!!"
         erb :login
     end  
+end
+
+get '/delete/:page' do
+	@p = Person.first(:email => session[:email])
+	@this_page = Page.first(:slug => params[:page])
+	if @p && @p.id == @this_page.person.id 
+		@this_page.destroy!
+		@owner = true
+		@page_title = "Your Profile"
+		@page_heading = "You successfully deleted your page!"
+		erb :profile
+	else
+		@owner = false
+		resetSession
+		@page_title = "Please Login"
+		@page_heading = "Please Login"
+		erb :login
+	end
 end
 
 get '/logout' do

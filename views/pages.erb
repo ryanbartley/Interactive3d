@@ -4,11 +4,19 @@
 
 <ul id="pages_list">
 <% @people.each do |person| %>
+<% if person.email == session[:email] %>
+	<% myPage = true %>
+<% else %>
+	<% myPage = false %>
+<% end %>
 	<li>
 		<h2><%= person.name %></h2>
 		<ul>
 		<% person.pages.each do |page| %>
 			<li><a href="/pages/<%= page.slug %>"><%= page.title %></a></li>
+			<% if myPage %>
+				 <a class="button" href="/edit/<%= page.slug %>">Edit</a><a class="button" href="/delete/<%= page.slug %>">Delete</a>
+			<% end %>
 		<% end %>
 		</ul>
 	</li>
