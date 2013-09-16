@@ -12,29 +12,29 @@
 		</li>
 		<li>
 			<button type="submit">Save changes</button>
-			<a class="button" id="update" href="#">Update Page</a>
+			<a class="button" id="preview" href="#">Preview Page</a>
 			<a class="button" href="/edit/<%= @this_page.slug %>">Reset Page</a>
 			<a class="button" href="/profile">Cancel</a>
 		</li>
 	</ul>
 </form>
 
-<div id="code">
-	<%= @this_page.code %>
-</div>
+
+<iframe seamless width="100%" height="1000px" id="frame" srcdoc='<%= @this_page.code %>' sandbox="allow-scripts" ></iframe>
+
 
 <script type="text/javascript">
 	var code;
 	var button;
 	var textarea;
+	var iframe;
 	$(window).ready(function(){
-		code = $('div #code');
-		$('#update').click(function(){
+		iframe = $('#frame');
+		$('#preview').click(function(){
 			textarea = $('textarea');
 			var input = textarea.val();
-			code.html(' ');
+			iframe.attr("srcdoc", input);
 			textarea.text(input);
-			code.html(input);
 		});
 	});
 
