@@ -169,6 +169,21 @@ post '/newpage' do
     end     
 end
 
+post '/editpage' do
+	@p = Person.first(:email => session[:email])
+	if @p
+		@this_page = Page.first(:id => params[:pageid])
+		@this_page.title = params[:title]
+		@this_page.code = params[:code]
+		@this_page.save
+		:editpage
+	else
+		@page_title = "You're not logged in GO FUCK YOURSELF!!!!!!!!!!!!!!!!!!!"
+        @page_heading = "You're not logged in GO FUCK YOURSELF!!!!!!!!!!!!!!!!!!!"
+        erb :login
+	end
+end
+
 get '/edit/:page' do
 	@p = Person.first(:email => session[:email])
 	@this_page = Page.first(:slug => params[:page])
