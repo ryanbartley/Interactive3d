@@ -123,7 +123,6 @@ get '/pages/:page' do
 			@page_heading = "You can edit, add or delete code and submit when finished!"
 			erb :singlepage
 		else
-		
 			@owner = false
 			@page_title = @this_page.title
 			@page_heading = @this_page.title
