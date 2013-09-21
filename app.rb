@@ -97,6 +97,35 @@ end
 get '/profile' do
 	@p = Person.first(:email => session[:email])
 	if @p 
+		# check if they have a last_login and if not make it now
+		if @p.last_login.nil?
+			@p.updateLogin
+		end
+		# set up the new topic variable
+		@new_topic = false
+		@new_post = false
+		@topics = Topic.all(:order => :created_at.desc)
+		# go through the topics and check to see if they have new topics
+		@topics.each do |topic|
+			if topic.created_at > @p.last_login
+				@new_topic = true
+				break
+			end
+		end
+		# go through the reply's and check to see if they have new reply's
+		@topics.each do |topic|
+			if topic.person.name == @p.name
+				@posts = topic.posts.all(:order => :created_at.desc)
+				@posts.each do |post|
+					if post.created_at > @p.last_login
+						@new_post = true
+						break
+					end
+				end
+			end
+		end
+		# set their new last_login
+		@p.updateLogin
 		@page_title = "Your Profile"
 		@page_heading = "Your Profile"
 		erb :profile
@@ -158,10 +187,13 @@ post '/newpage' do
         @pages = Page.all
         @this_page.createPage(params[:title], params[:code], @p)
         @owner = true
+        @edit = true
         @page_title = "Edit Page"
 		@page_heading = "You can edit, add or delete code and submit when finished!"
         erb :editpage
     else
+		@owner = false
+		@edit = false
         @page_title = "You're not logged in GO FUCK YOURSELF!!!!!!!!!!!!!!!!!!!"
         @page_heading = "You're not logged in GO FUCK YOURSELF!!!!!!!!!!!!!!!!!!!"
         erb :login
@@ -175,8 +207,14 @@ post '/editpage' do
 		@this_page.title = params[:title]
 		@this_page.code = params[:code]
 		@this_page.save
-		:editpage
+		@owner = true
+		@edit = true
+        @page_title = "Edit Page"
+		@page_heading = "You can edit, add or delete code and submit when finished!"
+		erb :editpage
 	else
+		@owner = false
+		@edit = false
 		@page_title = "You're not logged in GO FUCK YOURSELF!!!!!!!!!!!!!!!!!!!"
         @page_heading = "You're not logged in GO FUCK YOURSELF!!!!!!!!!!!!!!!!!!!"
         erb :login
@@ -188,11 +226,13 @@ get '/edit/:page' do
 	@this_page = Page.first(:slug => params[:page])
 	if @p && @p.id == @this_page.person.id 
 		@owner = true
+		@edit = true
 		@page_title = "Edit Page"
 		@page_heading = "You can edit, add or delete code and submit when finished!"
 		erb :editpage
 	else
 		@owner = false
+		@edit = false
 		resetSession
 		@page_title = "Please Login"
 		@page_heading = "Please Login"
@@ -204,12 +244,10 @@ get '/forum' do
 	@p = Person.first(:email => session[:email])
 	@topics = Topic.all(:order => [ :created_at.desc ])
 	if @p 
-		@edit = true
 		@page_title = "Question Forum"
 		@page_heading = "Post your Questions or Answers!"
 		erb :forum
 	else
-		@edit = false
 		resetSession
 		@page_title = "Question Forum"
 		@page_heading = "Check out questions and answers!"

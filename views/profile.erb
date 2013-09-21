@@ -16,5 +16,10 @@
 	<ul id="profile_controls">
 		<li><a class="button" href="/addpage">Add Page</a></li>
 		<li><a class="button" href="/addtopic">Add Topic</a></li>
+		<% if @new_topic && !@new_post %>
+			<li><a class="button" href="/forum">New Topics</a></li>
+		<% elsif @new_topic && @new_post %>
+			<li><a class="button" href="/forum">New Reply</a></li>
+		<% end %>
 	</ul>
 </div>

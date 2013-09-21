@@ -41,6 +41,7 @@ class Person
  	property :lastname, 	String
  	property :email, 		String
  	property :password,		BCryptHash
+ 	property :last_login, 	DateTime
 	
  	has n, :pages, :through => Resource
  	has n, :topics, :through => :person_topic
@@ -68,6 +69,11 @@ class Person
 
  	def getPages
  		self.pages.all
+ 	end
+
+ 	def updateLogin
+ 		self.last_login = DateTime.now
+ 		self.save
  	end
 
  	def name

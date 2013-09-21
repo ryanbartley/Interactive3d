@@ -12,7 +12,7 @@
 				<a class="button" href="/topic/<%= topic.slug %>">Reply To Topic</a>
 			<% end %>
 				<ul class="replies">
-					<% posts = topic.posts.all(:order => [ :created_at.desc ]) %>
+					<% posts = topic.posts.all(:order => [ :created_at.asc ]) %>
 					<% posts.each do |post| %>
 						<li>
 							<h2><%= post.person.name %>, <%= post.created_at.strftime("%m/%d/%Y at %I:%M%p") %></h2>
