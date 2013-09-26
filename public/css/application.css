@@ -1,12 +1,14 @@
 html,body { width: 100%; }
-body { color: #444; font-family: Helvetica, Arial, sans-serif; }
+body,
+.ui-widget { color: #444; font-family: Helvetica, Arial, sans-serif; }
 a { color: #9a63c9; text-decoration: none; }
 a:hover { background-color: #444; color: #FFF; }
 .button { display: inline-block; }
 .button.big { font-size: 120%; margin-bottom: 14px; }
-.button, form button { background-color: #444; border: none; color: #fff; cursor: pointer; font-family: Helvetica; font-weight: bold; font-size: 12px; padding: 4px; text-align: center; }
+.button, form button, .ui-widget-content .button, .ui-widget button { background-color: #444; border: none; color: #fff; cursor: pointer; font-family: Helvetica; font-weight: bold; font-size: 12px; padding: 4px; text-align: center; }
 .button:hover, form button:hover { background-color: #9a63c9; }
-.code { font-family: "Lucida Console", Monaco, monospace; width: 83%; }
+.code,
+.ui-widget .code { font-family: "Lucida Console", Monaco, monospace; width: 83%; }
 form input,
 form textarea { background-color: #CCC; border: none; color: #444; font-family: Helvetica, Arial, sans-serif; padding: 4px; width: 30%; }
 form input:focus,
@@ -51,3 +53,6 @@ header section { float: right; position: relative; }
 #forum_topics .replies { margin-top: 12px; }
 #forum_topics .replies li { background-color: #CDCDCD; }
 #forum_topics .replies li p { margin-bottom: 0; }
+
+.page_controls,
+.page_controls li { display: inline; }
