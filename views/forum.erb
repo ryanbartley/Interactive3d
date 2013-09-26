@@ -1,8 +1,8 @@
 <h1><%= @page_heading %></h1>
 
-<% if @edit %>
-	<a id="add_topic" class="big button" href="/addtopic">Add Topic</a>
-<% end %>
+
+<a id="add_topic" class="big button" href="/addtopic">Add Topic</a>
+
 <ul id="forum_topics">
 	<% @topics.each do |topic| %>
 		<li>
