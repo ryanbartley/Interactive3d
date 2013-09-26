@@ -53,6 +53,8 @@ header section { float: right; position: relative; }
 #profile_controls li { display: inline; }
 
 #forum_topics { margin-bottom: 12px; }
+#forum_topics .hidden { display: none; }
+#forum_topics .hideshow { display: block; margin-bottom: 12px; width: 140px; }
 #forum_topics li { background-color: #DFDFDF; border-left: 4px solid #444; padding: 10px; }
 #forum_topics .replies { margin-top: 12px; }
 #forum_topics .replies li { background-color: #CDCDCD; }
