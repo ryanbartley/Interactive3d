@@ -62,3 +62,6 @@ header section { float: right; position: relative; }
 
 .page_controls,
 .page_controls li { display: inline; }
+
+#editModal textarea { font-size: 12px; }
+#editButton { position: absolute; bottom: 10px; left: 10px;} 

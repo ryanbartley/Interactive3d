@@ -22,9 +22,6 @@
 					<li><a href="/pages">Pages</a>/</li>
 					<li><a href="/forum">Forum</a></li>
 				</ul> 
-				<% if @edit %>
-					<a href="#" id="editButton">Edit</a>
-				<% end %>
 				<section id="welcome">
 					<h2>Welcome, <%= firstname %> <%= lastname %>!</h2>
 					<ul>
@@ -65,6 +62,9 @@
 		<%= yield %>
 		</div>
 	</div>
+	<% if @edit %>
+		<a href="#" id="editButton" class="big button">Edit</a>
+	<% end %>
 </body>
 </html>
 

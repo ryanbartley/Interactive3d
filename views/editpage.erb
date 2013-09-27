@@ -50,6 +50,7 @@
 				width: ($(window).width() / 3) * 2,
 				height: ($(window).height() / 8) * 7
 			});
+			$("#editModal").find('textarea').css('height', ($(window).height() / 8) * 7 -  150);
 		});
 		editButton = $("#editButton");
 		if (editButton) {
@@ -57,6 +58,7 @@
 				$("#editModal").dialog('open');
 			});
 		};
+		$("#editModal").find('textarea').css('height', ($(window).height() / 8) * 7 -  150);
 	});
 
 </script>
