@@ -64,4 +64,7 @@ header section { float: right; position: relative; }
 .page_controls li { display: inline; }
 
 #editModal textarea { font-size: 12px; }
-#editButton { position: absolute; bottom: 10px; left: 10px;} 
+#editButton { position: absolute; bottom: 10px; left: 10px; } 
+
+#codeButton { position: absolute; bottom: 10px; left: 10px; z-index: 100;}
+#code { position: absolute; bottom: 10px; right: 10px; left: 10px; height: 100px; z-index: 100; }

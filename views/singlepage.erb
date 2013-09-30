@@ -1,1 +1,19 @@
 <%= @this_page.code %>
+<textarea id="code" hidden readonly><%= @this_page.code %></textarea>
+<a href="#" id="codeButton" class="big button">See Code</a>
+
+<script type="text/javascript">
+	$("#codeButton").on('click', function(){
+		var textAreaHeight = $(document).height() / 3;
+		$('#code').css('height', textAreaHeight.toString());
+		$("#code").toggle();
+		var codeButtonHeight = $('#codeButton').css('bottom');
+		if ( parseInt(codeButtonHeight) > 10 ) {
+			$("#codeButton").css('bottom', '10px');
+		} else {
+			var buttonHeight = textAreaHeight + 10;
+			$("#codeButton").css('bottom', buttonHeight.toString() + 'px');
+		};
+		
+	});
+</script>
