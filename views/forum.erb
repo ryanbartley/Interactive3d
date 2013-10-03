@@ -1,18 +1,17 @@
 <h1><%= @page_heading %></h1>
 
-<% if @edit %>
-	<a id="add_topic" class="big button" href="/addtopic">Add Topic</a>
-<% end %>
+
+<a id="add_topic" class="big button" href="/addtopic">Add Topic</a>
+
 <ul id="forum_topics">
 	<% @topics.each do |topic| %>
 		<li>
 			<h2><%= topic.title %> - <%= topic.person.name %>, <%= topic.created_at.strftime("%m/%d/%Y at %I:%M%p") %></h2> 
 			<p><%= topic.text %></p>
-			<% if @edit %>
-				<a class="button" href="/topic/<%= topic.slug %>">Reply To Topic</a>
-			<% end %>
-				<ul class="replies">
-					<% posts = topic.posts.all(:order => [ :created_at.asc ]) %>
+			<% posts = topic.posts.all(:order => [ :created_at.asc ]) %>
+			<% if posts.count > 0 %>
+				<a class="hideshow" href="#">Toggle Replies</a>
+				<ul class="replies hidden">
 					<% posts.each do |post| %>
 						<li>
 							<h2><%= post.person.name %>, <%= post.created_at.strftime("%m/%d/%Y at %I:%M%p") %></h2>
@@ -20,6 +19,15 @@
 						</li>
 					<% end %>
 				</ul>
+			<% end %>
+			<a class="button" href="/topic/<%= topic.slug %>">Reply To Topic</a>
 		</li>
 	<% end %>
 </ul>
+
+<script type="text/javascript">
+	$('.hideshow').on('click', function(e) {
+		e.preventDefault();
+		$(this).siblings('.replies').toggleClass('hidden');
+	});
+</script>

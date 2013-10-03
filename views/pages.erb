@@ -13,10 +13,14 @@
 		<h2><%= person.name %></h2>
 		<ul>
 		<% person.pages.each do |page| %>
-			<li><a href="/pages/<%= page.slug %>"><%= page.title %></a></li>
-			<% if myPage %>
-				 <a class="button" href="/edit/<%= page.slug %>">Edit</a><a class="button" href="/delete/<%= page.slug %>">Delete</a>
-			<% end %>
+			<li><a href="/pages/<%= page.slug %>"><%= page.title %></a>
+				<% if myPage %>
+					 <ul class="page_controls">
+					 	<li><a class="button" href="/edit/<%= page.slug %>">Edit</a></li>
+					 	<li><a class="button" href="/delete/<%= page.slug %>">Delete</a></li>
+					 </ul>
+				<% end %>
+			</li>
 		<% end %>
 		</ul>
 	</li>

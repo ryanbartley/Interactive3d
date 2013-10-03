@@ -6,7 +6,10 @@
 	</title>
 	<script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
 	<script type="text/javascript" src="/js/application.js"></script>
+	<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js" type="text/javascript"></script>
+	
 	<link rel="stylesheet" href="/css/reset.css" />
+	<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
 	<link rel="stylesheet" href="/css/application.css" />
 	<body>
 		<div id="site_holder">
@@ -19,9 +22,6 @@
 					<li><a href="/pages">Pages</a>/</li>
 					<li><a href="/forum">Forum</a></li>
 				</ul> 
-				<% if @edit %>
-					<a href="#" id="editButton">Edit</a>
-				<% end %>
 				<section id="welcome">
 					<h2>Welcome, <%= firstname %> <%= lastname %>!</h2>
 					<ul>
@@ -59,9 +59,12 @@
 			</header>
 
 		<div id="main_content">
-		<%= yield %>
+			<%= yield %>
 		</div>
 	</div>
+	<% if @edit %>
+		<a href="#" id="editButton" class="big button">Edit</a>
+	<% end %>
 </body>
 </html>
 
